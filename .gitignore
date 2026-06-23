@@ -1,1 +1,5 @@
 **/_cache
+.claude/tmp
+.claude/*.local.*
+.claude/.DS_Store
+**/.DS_Store

@@ -1,0 +1,60 @@
+[
+  {
+    "type": "should",
+    "prompt": "Let's brainstorm features for my new habit-tracking app",
+    "expect_action": "frame-problem",
+    "note": "Product/feature ideation — enters the session at framing before any idea is generated"
+  },
+  {
+    "type": "should",
+    "prompt": "I need to brainstorm architecture options for our event ingestion pipeline",
+    "expect_action": "frame-problem",
+    "note": "Technical/architecture ideation — still starts at framing to pin constraints and success criteria"
+  },
+  {
+    "type": "should",
+    "prompt": "Run an intensive brainstorming session on how to reduce onboarding drop-off",
+    "expect_action": "frame-problem",
+    "note": "Explicit 'intensive brainstorming session' trigger — full guided flow from framing"
+  },
+  {
+    "type": "should",
+    "prompt": "I already dumped 30 raw ideas in this doc — help me cluster, evaluate and pick the top ones with a plan",
+    "expect_action": "converge",
+    "note": "User arrives mid-flow with divergence already done — router enters at convergence, then synthesis"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Stress-test my existing implementation plan by interrogating every decision",
+    "expect_action": null,
+    "competing_skill": "grilling",
+    "note": "Interrogating an existing plan is grilling's job; ultrabrain generates new ideas, it does not cross-examine a finished plan"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Think deeply and reason step by step through this hard concurrency bug",
+    "expect_action": null,
+    "competing_skill": "ultrathink",
+    "note": "Deep single-problem reasoning is ultrathink; ultrabrain is divergent idea generation, not convergent analysis of one problem"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Review the current diff for bugs and cleanups",
+    "expect_action": null,
+    "competing_skill": "code-review",
+    "note": "Code review is not ideation"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Create a new skill for posting to Notion",
+    "expect_action": null,
+    "competing_skill": "generate-skill",
+    "note": "Authoring a skill is generate-skill, not a brainstorming session"
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "I'm not sure what to build next for my product",
+    "expect_action": "ask_clarification",
+    "note": "Ask whether they want a full divergent brainstorming session (run ultrabrain) or a quick recommendation, and what goal/constraint should anchor the ideation"
+  }
+]
