@@ -1,0 +1,60 @@
+[
+  {
+    "type": "should",
+    "prompt": "Diagnose why users get logged out randomly after the last deploy",
+    "expect_action": "intake",
+    "note": "Bug report with a clear symptom and a temporal anchor (last deploy). Enters intake, scopes the problem, then investigates."
+  },
+  {
+    "type": "should",
+    "prompt": "Analyze the impact of this null-pointer bug in checkout and propose a fix I can approve before you touch anything",
+    "expect_action": "intake",
+    "note": "Explicit demand for impact analysis + a written proposal + an approval gate before code changes — the exact diagnose contract."
+  },
+  {
+    "type": "should",
+    "prompt": "Investigate this regression: search results are empty since we changed the indexer",
+    "expect_action": "intake",
+    "note": "Regression with a suspected cause. intake confirms scope, investigate traces the regression and its side effects."
+  },
+  {
+    "type": "should",
+    "prompt": "Cart total differs between the API and the UI — dig into the codebase and tell me what's going on before changing code",
+    "expect_action": "intake",
+    "note": "Inconsistency between two sources of truth. Wants codebase analysis and a report before any change."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Just fix this TypeError quickly, no report needed",
+    "expect_action": null,
+    "competing_skill": "fix-errors",
+    "note": "User explicitly opts out of analysis and report. A quick error fix, not a diagnosis with a validation gate."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Review my current diff before I push",
+    "expect_action": null,
+    "competing_skill": "code-review",
+    "note": "Reviewing an existing diff for bugs/cleanups is code-review's job, not problem diagnosis."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Refactor the whole data layer to a cleaner architecture",
+    "expect_action": null,
+    "competing_skill": "improve-codebase-architecture",
+    "note": "Broad architecture refactor with no specific reported problem — out of scope for diagnose."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Write a slash command to format JSON",
+    "expect_action": null,
+    "competing_skill": "none",
+    "note": "Authoring a slash command is unrelated to diagnosing a code problem."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "The app feels slow lately, can you look into it?",
+    "expect_action": "ask_clarification",
+    "note": "Vague performance complaint. Ask which symptom/route/metric defines 'slow', for reproduction steps, and whether the user wants the full analysis report + approval gate or just a quick fix (which would route to fix-errors)."
+  }
+]
