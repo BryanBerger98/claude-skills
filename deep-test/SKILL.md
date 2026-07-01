@@ -11,7 +11,7 @@ Takes a prompt describing a set of features and tests them in depth: it rebuilds
 
 | #   | Action         | Role                                                                                       | Input                          |
 | --- | -------------- | ------------------------------------------------------------------------------------------ | ------------------------------ |
-| 01  | `intake`       | Scope the feature set; detect + launch the app; collect URL/API/creds/test-account; verify reachability | raw `<prompt>`      |
+| 01  | `intake`       | Scope the feature set; detect + launch the app; collect URL/API/creds/seed; **ask the auth method** (session cookie / credentials / magic link) and build a verified shared auth state; verify reachability | raw `<prompt>` |
 | 02  | `map`          | Rebuild the graphify graph, then map the relevant code surface (UI routes, API endpoints, business logic, data models) | scoped features |
 | 03  | `understand`   | Derive the testable behavior spec: expected behaviors, invariants, edge cases, user flows, acceptance criteria | surface map |
 | 04  | `run-tests`    | Partition the spec across parallel opus QA agents (UI-e2e + API); collect structured, scored reports | behavior spec + app access |
@@ -39,7 +39,8 @@ Two hard gates:
 - **QA agents are opus**: `run-tests` and `retest` dispatch `qa-ui` and `qa-api` on the opus model — deep probing needs strong reasoning. Report aggregation and fixing use cheaper tiers (see *Agents*).
 - **Parallel QA fan-out (hard)**: `run-tests` and `retest` MUST partition criteria into one batch per `(family, feature)` pair — a `both` criterion goes to both families — and split any batch over **6 criteria**. All resulting `qa-ui`/`qa-api` calls are emitted in a **single message** so they run concurrently. Invariant: agent count ≥ one per family present in the batch set; dispatch-await-dispatch (serial) is a defect, not a valid fallback. Procedure + test: `04-run-tests`.
 - **Graph is always rebuilt**: `map` runs `graphify update <repo>` (fast, no-LLM re-extraction) before exploring, so navigation reflects the current tree. Read-only agents (`investigator`) must never build the graph.
-- **App access**: base URL, API base URL, test credentials, test account, and seed data are captured once in `intake` and threaded to every QA agent. Never test against an unverified endpoint.
+- **App access**: base URL, API base URL, test credentials, test account, seed data, and the `auth` block are captured once in `intake` and threaded to every QA agent. Never test against an unverified endpoint.
+- **Browser isolation (hard)**: `qa-ui` drives a dedicated, headless, isolated `agent-browser --session deep-test-<slug>` instance — **never** the user's live browser. `--profile`, `--cdp`, and bare `--auto-connect` (which attach to the user's real Chrome) are forbidden during testing; the only sanctioned touch of the user's Chrome is the one-shot read-only `--auto-connect state save` export when `intake`'s auth method is `cookie`. Auth is chosen by the user at `intake` (session cookie / credentials / magic link), exported once to `app_access.auth.state_path`, and loaded read-only by each QA agent. Details: `references/agent-browser-cheatsheet.md`.
 
 ## Agents
 

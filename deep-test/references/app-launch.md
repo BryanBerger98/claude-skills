@@ -28,13 +28,13 @@ Before declaring success, confirm **both** targets respond:
 
 - UI: `curl -sS -o /dev/null -w "%{http_code}" <ui_base_url>` returns a 2xx/3xx.
 - API: hit a known-cheap endpoint (health check, or a documented public route) and confirm a sane status + shape.
-- If auth is required to reach anything, confirm the **test account** actually logs in (obtain a token/session) — an app you can't authenticate against is not reachable for QA.
+- **Detect whether auth is required** (does the app redirect to a login page, does the API return 401/403?) and find the **login URL candidate** from routes/config. Report both as findings. Do NOT choose an auth method or perform the login yourself — the method (session cookie / credentials / magic link) is chosen by the user in `01-intake`, which then builds and verifies the shared auth state. Your job is only to signal that auth is needed and where the login lives.
 
 ## What to return
 
 A structured record for the main loop:
 
-- `app_access`: `{ ui_base_url, api_base_url, test_account, seed_data, launch_command, health: reachable|unreachable }`.
+- `app_access`: `{ ui_base_url, api_base_url, test_account, seed_data, launch_command, health: reachable|unreachable, auth_required: true|false, login_url_candidate }`. The `auth` block (chosen method + state file) is filled later by `01-intake`, not by you.
 - `scope_proposal`: the feature slices the running app actually exposes (so intake can reconcile with the user's prompt).
 - `blockers`: anything that stops reachability — missing creds, failing build, unknown port, empty seed — each with the evidence (command + output) and what the user must provide.
 

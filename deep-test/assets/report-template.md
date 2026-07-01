@@ -12,6 +12,7 @@
 | ui_url   | `<ui_base_url>`                                                              |
 | api_url  | `<api_base_url>`                                                             |
 | scope    | `<comma-separated features under test>`                                      |
+| auth     | `<none \| cookie \| credentials \| magic_link>` (method used to reach the logged-in state) |
 
 ## Scope tested
 
