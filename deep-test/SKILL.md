@@ -37,6 +37,7 @@ Two hard gates:
 - **Evidence rule**: every QA problem carries reproduction steps + evidence (HTTP status, console/log excerpt, screenshot or accessibility-tree snapshot). Every traced cause cites `file:line`. No claim without a reference.
 - **Approval is sacred**: code edits, `git` mutations, and migrations are forbidden before the `review` gate clears in `07`. `fix` runs only on explicit user approval.
 - **QA agents are opus**: `run-tests` and `retest` dispatch `qa-ui` and `qa-api` on the opus model — deep probing needs strong reasoning. Report aggregation and fixing use cheaper tiers (see *Agents*).
+- **Parallel QA fan-out (hard)**: `run-tests` and `retest` MUST partition criteria into one batch per `(family, feature)` pair — a `both` criterion goes to both families — and split any batch over **6 criteria**. All resulting `qa-ui`/`qa-api` calls are emitted in a **single message** so they run concurrently. Invariant: agent count ≥ one per family present in the batch set; dispatch-await-dispatch (serial) is a defect, not a valid fallback. Procedure + test: `04-run-tests`.
 - **Graph is always rebuilt**: `map` runs `graphify update <repo>` (fast, no-LLM re-extraction) before exploring, so navigation reflects the current tree. Read-only agents (`investigator`) must never build the graph.
 - **App access**: base URL, API base URL, test credentials, test account, and seed data are captured once in `intake` and threaded to every QA agent. Never test against an unverified endpoint.
 
