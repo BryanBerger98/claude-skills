@@ -1,0 +1,60 @@
+[
+  {
+    "type": "should",
+    "prompt": "Deep-test the checkout and payment flow end to end",
+    "expect_action": "intake",
+    "note": "Multi-surface feature sweep — enters the sequential flow at intake."
+  },
+  {
+    "type": "should",
+    "prompt": "Run a full QA pass on the user authentication feature — find bugs, trace the causes, and fix them",
+    "expect_action": "intake",
+    "note": "Autonomous find-trace-fix loop across a feature; the deep-test signature."
+  },
+  {
+    "type": "should",
+    "prompt": "I want deep automated testing of the dashboard, both UI and API, with a report and root-cause analysis",
+    "expect_action": "intake",
+    "note": "Explicit UI+API QA sweep with report + root cause — core use case."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Diagnose why the login page throws a 500 error",
+    "expect_action": null,
+    "competing_skill": "diagnose",
+    "note": "A single known bug with a written analysis — diagnose, not a QA sweep."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Review my current diff for bugs before I push",
+    "expect_action": null,
+    "competing_skill": "code-review",
+    "note": "Reviewing a diff, not running the app against a behavior spec."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Run the app and take a screenshot to confirm my change works",
+    "expect_action": null,
+    "competing_skill": "run",
+    "note": "Eyeballing one change in the running app — run/verify, no QA agents or report."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Fix the TypeScript errors in this file",
+    "expect_action": null,
+    "competing_skill": "fix-errors",
+    "note": "Quick error fix with no testing loop."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Test the app",
+    "expect_action": "ask_clarification",
+    "note": "Ask which features/scope, whether to cover UI, API or both, and for the app URL + test credentials."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Make sure everything works",
+    "expect_action": "ask_clarification",
+    "note": "Ask which feature set to scope, the app access details, and what 'works' means as acceptance criteria."
+  }
+]
