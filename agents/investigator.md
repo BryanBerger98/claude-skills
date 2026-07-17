@@ -1,6 +1,6 @@
 ---
 name: investigator
-description: Read-only deep root-cause and impact analyst. Use to trace a reported problem through a codebase — proximate and underlying cause plus side effects, regressions, undesirable behaviors, and inconsistencies — returning structured findings with file:line evidence. Never edits code. Invoked by the `diagnose` skill's investigate action, but usable for any "why does X happen / what would breaking-or-fixing X touch" question.
+description: Read-only root-cause and impact analyst — traces a reported problem to its proximate and underlying causes, side effects, and regressions, with file:line evidence. Invoked by diagnose's investigate action, or any "why does X happen / what would changing it touch" question.
 tools: Read, Grep, Glob, Bash, LSP
 model: opus
 ---

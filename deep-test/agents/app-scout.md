@@ -1,6 +1,6 @@
 ---
 name: app-scout
-description: Detects an app's type, launches its web UI and API for testing, verifies both are reachable, and probes the codebase to propose a testable feature surface plus the credentials and seed data QA will need. Used by the deep-test skill's intake action. Returns a structured app_access + scope_proposal record; it starts processes and reads code but does not edit source.
+description: Launches a target app's web UI and API, verifies both respond, and proposes the testable feature surface plus the credentials and seed data QA needs. Used by deep-test's intake action. Starts processes, never edits source.
 tools: Bash, Read, Grep, Glob, LSP
 model: sonnet
 ---

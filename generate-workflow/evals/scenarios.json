@@ -1,0 +1,66 @@
+[
+  {
+    "type": "should",
+    "prompt": "Je perds un temps fou sur mes revues de PR, aide-moi à concevoir un setup d'agents et de skills pour automatiser ça",
+    "expect_action": "frame-need",
+    "note": "Pain expressed + explicit ask for a multi-component setup"
+  },
+  {
+    "type": "should",
+    "prompt": "Quelle architecture Claude Code (agents, skills, hooks, MCP) me recommandes-tu pour industrialiser ma génération de tickets Jira depuis Notion ?",
+    "expect_action": "frame-need",
+    "note": "Explicit architecture request spanning several component types"
+  },
+  {
+    "type": "should",
+    "prompt": "J'aimerais automatiser ma veille techno du matin avec Claude Code mais je ne sais pas par où commencer",
+    "expect_action": "frame-need",
+    "note": "Vague automation need — the skill's deep framing is precisely the value"
+  },
+  {
+    "type": "should",
+    "prompt": "Propose-moi un plan d'architecture agentique pour outiller mon équipe support, avec l'ordre dans lequel construire les briques",
+    "expect_action": "frame-need",
+    "note": "Team-scale need; build-order expectation matches the plan's handoff section"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Crée-moi une skill qui poste un résumé quotidien sur Slack",
+    "expect_action": null,
+    "competing_skill": "generate-skill",
+    "note": "Single component with a clear spec — no architecture phase needed"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Crée un subagent en lecture seule qui analyse les logs applicatifs",
+    "expect_action": null,
+    "competing_skill": "generate-agent",
+    "note": "Single agent to build, not a system to design"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Améliore l'architecture de mon codebase Next.js",
+    "expect_action": null,
+    "competing_skill": "improve-codebase-architecture",
+    "note": "Software architecture, not agentic-workflow architecture"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Ajoute un hook qui bloque toute édition des fichiers .env",
+    "expect_action": null,
+    "competing_skill": "update-config",
+    "note": "Direct settings.json change, no design phase"
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "J'aimerais que Claude m'aide mieux sur mes tests",
+    "expect_action": "ask_clarification",
+    "note": "Ask whether the need is a single component (route to generate-skill / generate-agent) or a whole workflow to architect"
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Optimise mon setup Claude Code",
+    "expect_action": "ask_clarification",
+    "note": "Ask whether they want an architecture redesign driven by needs (this skill) or targeted config/permission tweaks (update-config)"
+  }
+]

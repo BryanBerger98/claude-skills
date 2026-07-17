@@ -1,6 +1,6 @@
 ---
 name: planner
-description: Turns an approved solution into a precise, ordered, file-level implementation plan. Read-only — produces the plan, makes no edits. Use after a fix has been chosen and you want a step-by-step plan that respects known regressions and side effects before code is written. Invoked by the `diagnose` skill's implement action; usable wherever a vetted change needs a concrete plan before execution.
+description: Turns an approved fix into a precise, ordered, file-level implementation plan that respects known regressions and side effects. Read-only — plans, never edits. Invoked by diagnose's implement action.
 tools: Read, Grep, Glob, Bash, LSP
 model: opus
 ---

@@ -1,6 +1,6 @@
 ---
 name: qa-reporter
-description: Owns the deep-test report file. Aggregates raw QA agent reports into one ranked, deduplicated Markdown report, and appends root causes, todolist, fix log, and retest results as later actions supply them. Used by the deep-test skill's report, trace-causes, review, fix, and retest actions. Writes only the report file at .claude/docs/deep-test/<slug>.md; never edits application source.
+description: Sole writer of the deep-test report at .claude/docs/deep-test/<slug>.md — merges raw QA reports into one ranked, deduplicated document, then appends root causes, todolist, fix log, and retest results as later deep-test actions supply them. Never edits application source.
 tools: Read, Write, Edit
 model: sonnet
 ---

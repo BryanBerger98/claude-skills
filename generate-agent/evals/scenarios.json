@@ -1,0 +1,60 @@
+[
+  {
+    "type": "should",
+    "prompt": "Crée un agent read-only qui inventorie les hooks et settings du projet",
+    "expect_action": "capture-need",
+    "note": "Enters generate flow: deep AskUserQuestion investigation, then TDD pipeline"
+  },
+  {
+    "type": "should",
+    "prompt": "J'ai besoin d'un agent qui écrit les tests unitaires d'un module qu'on lui donne",
+    "expect_action": "capture-need",
+    "note": "Generate flow — role, boundaries, tool scope, and destination clarified in 01"
+  },
+  {
+    "type": "should",
+    "prompt": "Modifie l'agent investigator pour qu'il passe par LSP avant grep",
+    "expect_action": "capture-need",
+    "note": "Modify flow — 01 detects modify, reads the existing agent, jumps to targeted edit"
+  },
+  {
+    "type": "should",
+    "prompt": "Mon agent qa-ui ne se déclenche jamais quand je demande un test navigateur — corrige sa description",
+    "expect_action": "capture-need",
+    "note": "Modify flow — routing failure: the description is the delegation criterion to fix"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Génère une skill /release qui enchaîne changelog, tag et publication",
+    "expect_action": null,
+    "competing_skill": "generate-skill",
+    "note": "Skill authoring, not agent authoring"
+  },
+  {
+    "type": "should_not",
+    "prompt": "J'aimerais automatiser toute ma revue de PR avec des agents, des hooks et des skills",
+    "expect_action": null,
+    "competing_skill": "generate-workflow",
+    "note": "Multi-component architecture plan first; generate-agent builds single agents from a clear spec"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Lance codebase-explorer sur src/ pour cartographier l'auth",
+    "expect_action": null,
+    "competing_skill": "none",
+    "note": "Direct invocation of an existing agent via the Agent tool — nothing to create or modify"
+  },
+  {
+    "type": "should_not",
+    "prompt": "Ajoute un hook PreToolUse qui bloque rm",
+    "expect_action": null,
+    "competing_skill": "update-config",
+    "note": "Harness configuration (hooks/settings), not agent authoring"
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Il me faudrait un truc qui review automatiquement mon code à chaque commit",
+    "expect_action": "ask_clarification",
+    "note": "Ask which component fits: 'à chaque commit' suggests a hook (update-config); a reviewer agent only if the user wants on-demand delegation; a full pipeline goes to generate-workflow"
+  }
+]

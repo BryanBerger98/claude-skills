@@ -1,0 +1,78 @@
+[
+  {
+    "type": "should",
+    "prompt": "Crée le design d'une nouvelle page d'accueil pour mon SaaS de gestion de copropriété",
+    "expect_action": "scope-need",
+    "note": "Greenfield creation — runs the scoping interview first, then proposal agents (no code audit)."
+  },
+  {
+    "type": "should",
+    "prompt": "Fais la refonte du design de cette page de tableau de bord, elle est datée",
+    "expect_action": "scope-need",
+    "note": "Refonte — interview then the full audit (code + UX + UI) before the spec."
+  },
+  {
+    "type": "should",
+    "prompt": "Critique l'UX de mon tunnel d'inscription et propose des améliorations",
+    "expect_action": "critique-ux",
+    "note": "Standalone UX critique entry."
+  },
+  {
+    "type": "should",
+    "prompt": "Donne-moi une critique UI de cette interface : typographie, couleurs, espacements",
+    "expect_action": "critique-ui",
+    "note": "Standalone UI critique entry."
+  },
+  {
+    "type": "should",
+    "prompt": "Analyse l'architecture frontend et les tokens de design de cette page avant la refonte",
+    "expect_action": "analyze-code",
+    "note": "Standalone frontend code analysis for design purposes."
+  },
+  {
+    "type": "should",
+    "prompt": "J'ai déjà le brief et les retours UX/UI, rédige le document de spécifications de design",
+    "expect_action": "synthesize-spec",
+    "note": "Standalone synthesis when interview and findings already exist."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Style cette landing page avec un look distinctif et travaillé",
+    "expect_action": null,
+    "competing_skill": "frontend-design",
+    "note": "Visual execution with taste, not a spec document."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Implémente la refonte : écris le code React et le CSS",
+    "expect_action": null,
+    "competing_skill": "frontend-design",
+    "note": "Implementation phase — out of scope; this skill stops at the spec."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Analyse la logique métier de cette page legacy twimm avant la refonte React",
+    "expect_action": null,
+    "competing_skill": "analyze-legacy-page",
+    "note": "Business/product analysis of a legacy PHP page, not a design audit."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Review cette pull request",
+    "expect_action": null,
+    "competing_skill": "code-review",
+    "note": "Code review, not design."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Améliore le design de cette page",
+    "expect_action": "ask_clarification",
+    "note": "Ask whether the user wants a specification document (scoping + code/UX/UI audit via audit-my-design) or the visual execution directly (frontend-design), and the exact scope (which page/screen)."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Refais le design de mon app",
+    "expect_action": "ask_clarification",
+    "note": "Ask the scope (which pages/screens), the business goals, and whether it is a redesign of the existing UI or a creation from scratch."
+  }
+]

@@ -1,6 +1,6 @@
 ---
 name: reporter
-description: Mechanically fills the diagnose analysis-report template from structured investigation findings. Local to the `diagnose` skill. Use to render findings into `.claude/docs/analysis/<slug>.md` — a template fill, not an analysis. Do NOT use to investigate, decide, or implement; it only writes the report from data it is handed.
+description: Mechanically fills the diagnose analysis-report template at .claude/docs/analysis/<slug>.md from findings it is handed — a template fill, never investigation, decisions, or implementation.
 tools: Read, Write, Edit
 model: haiku
 ---

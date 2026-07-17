@@ -1,0 +1,73 @@
+[
+  {
+    "type": "should",
+    "prompt": "Write tests for the checkout module until it reaches 100% coverage",
+    "expect_action": "intake",
+    "note": "Greenfield mode: an untested feature with an explicit 100% coverage target — enters the sequential flow at intake."
+  },
+  {
+    "type": "should",
+    "prompt": "The payment service already has some tests but coverage is stuck around 60% — analyze the gap and add the missing tests to reach 100%",
+    "expect_action": "intake",
+    "note": "Gap mode: an already-tested feature; the skill must assess current coverage and close the delta to 100%."
+  },
+  {
+    "type": "should",
+    "prompt": "Set up a full test suite for the auth feature: unit, integration and E2E, plus contract tests for its API",
+    "expect_action": "intake",
+    "note": "Type selection across levels including contract tests; the authoring signature of write-tests."
+  },
+  {
+    "type": "should",
+    "prompt": "Add property-based and visual regression tests for the pricing components",
+    "expect_action": "intake",
+    "note": "Selectable additional test types (property-based + visual regression) on a targeted surface."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Deep-test the checkout flow end to end and find bugs with root-cause analysis",
+    "expect_action": null,
+    "competing_skill": "deep-test",
+    "note": "Running QA agents against a live app to FIND bugs — not authoring test code toward coverage."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Diagnose why the cart total is wrong and fix it",
+    "expect_action": null,
+    "competing_skill": "diagnose",
+    "note": "A single known bug with a written analysis and fix — not building a test suite."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Our test suite is red — fix the failing tests",
+    "expect_action": null,
+    "competing_skill": "fix-errors",
+    "note": "Repairing existing broken tests, not authoring new tests to raise coverage."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Review my test file changes before I push",
+    "expect_action": null,
+    "competing_skill": "code-review",
+    "note": "Reviewing an existing diff, not generating tests to hit a coverage target."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Run the test suite and show me the results",
+    "expect_action": null,
+    "competing_skill": "none",
+    "note": "Just executing the existing suite — a plain command, no authoring or coverage strategy."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Add some tests",
+    "expect_action": "ask_clarification",
+    "note": "Ask which feature/target, whether it is already tested, which test types to author, and confirm the 100% coverage goal."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Improve our test coverage",
+    "expect_action": "ask_clarification",
+    "note": "Ask which module/scope, the current coverage baseline, the target, and which test types to include."
+  }
+]

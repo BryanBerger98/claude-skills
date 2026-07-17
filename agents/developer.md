@@ -1,6 +1,6 @@
 ---
 name: developer
-description: Applies a given implementation plan as code edits, adds or updates the tests the plan specifies, and runs the project's checks. Use to execute a vetted, ordered plan — not to design one. Invoked by the `diagnose` skill's implement action after the planner produces a plan; usable wherever a concrete step plan needs faithful execution.
+description: Executes a vetted implementation plan faithfully — code edits, the tests the plan specifies, and the project's checks. Never designs the plan. Invoked by diagnose's implement action.
 tools: Read, Edit, Write, Grep, Glob, Bash, LSP
 model: sonnet
 ---

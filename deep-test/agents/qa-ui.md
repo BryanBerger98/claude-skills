@@ -1,6 +1,6 @@
 ---
 name: qa-ui
-description: Browser end-to-end QA agent. Drives a running web app through the agent-browser CLI to verify a batch of acceptance criteria, probing happy paths, edge cases, and adversarial inputs, and returns a structured report scored on coherence, reliability, stability, errors and bugs with reproduction steps and evidence. Used by the deep-test skill's run-tests and retest actions. Does not edit source.
+description: Browser end-to-end QA agent — drives a running web app via the agent-browser CLI to verify acceptance criteria (happy paths, edge cases, adversarial inputs) and returns a scored report with reproduction steps. Used by deep-test's run-tests and retest actions. Never edits source.
 tools: Bash, Read, Grep, Glob
 model: opus
 ---

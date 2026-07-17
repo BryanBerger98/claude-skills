@@ -1,6 +1,6 @@
 ---
 name: qa-api
-description: HTTP API QA agent. Probes a running app's endpoints with curl to verify a batch of acceptance criteria, testing happy paths, edge cases, auth boundaries, and malformed inputs, and returns a structured report scored on coherence, reliability, stability, errors and bugs with reproduction commands and evidence. Used by the deep-test skill's run-tests and retest actions. Does not edit source.
+description: HTTP API QA agent — curls a running app's endpoints to verify acceptance criteria (happy paths, edge cases, auth boundaries, malformed inputs) and returns a scored report with reproduction commands. Used by deep-test's run-tests and retest actions. Never edits source.
 tools: Bash, Read, Grep, Glob
 model: opus
 ---

@@ -49,8 +49,8 @@ Heavy actions delegate to subagents so each runs at the right model tier with an
 | Action         | Subagent            | Model  | Scope    | Why                                                                  |
 | -------------- | ------------------- | ------ | -------- | -------------------------------------------------------------------- |
 | `intake`       | `app-scout`         | sonnet | local    | Detect app type, launch UI+API, verify reachability, propose scope   |
-| `map`          | `codebase-explorer` | sonnet | harness  | Read-only surface mapping over the freshly rebuilt graph + LSP       |
-| `understand`   | `spec-analyst`      | opus   | local    | Derive expected behaviors, invariants, and edge cases from the code  |
+| `map`          | `codebase-explorer` | sonnet | shared   | Read-only surface mapping over the freshly rebuilt graph + LSP       |
+| `understand`   | `spec-analyst`      | opus   | shared   | Derive expected behaviors, invariants, and edge cases from the code  |
 | `run-tests`    | `qa-ui`             | opus   | local    | Browser e2e probing via `agent-browser`; structured scored report    |
 | `run-tests`    | `qa-api`            | opus   | local    | HTTP endpoint probing via `curl`; structured scored report           |
 | `report`       | `qa-reporter`       | sonnet | local    | Aggregate, dedup, rank QA reports and own every write to the report  |
@@ -73,6 +73,8 @@ Heavy actions delegate to subagents so each runs at the right model tier with an
 
 ## External data (cross-skill pointers per R7)
 
+- `../agents/codebase-explorer.md` — shared read-only exploration agent (sonnet) that maps a feature's code surface with file:line evidence. Used by `map`.
+- `../agents/spec-analyst.md` — shared read-only spec agent (opus) that derives testable acceptance criteria from mapped code. Used by `understand`.
 - `../agents/investigator.md` — shared read-only root-cause agent (opus). Used by `trace-causes`.
 - `../agents/planner.md` — shared planning agent (opus) that turns an approved fix into a step plan. Used by `fix`.
 - `../agents/developer.md` — shared implementation agent (sonnet) that applies the plan. Used by `fix`.
