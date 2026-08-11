@@ -1,0 +1,92 @@
+// Canonical markdownlint rule set for the house Markdown writing contract.
+//
+// FORMAT — rules sit at the ROOT of this object, markdownlint style.
+// Do NOT wrap them in a "config" key: a file inheriting this one via `extends`
+// would silently apply nothing. Verified on markdownlint-cli2 v0.22.1.
+//
+// USAGE — a repository never copies this file. It points at it:
+//
+//   .markdownlint-cli2.jsonc
+//   { "config": { "extends": "/Users/<you>/.claude/skills/markdown-style/assets/markdownlint-rules.jsonc" },
+//     "ignores": ["node_modules", ".git"] }
+//
+// `extends` resolves relative paths against the file that declares them, so a
+// repo outside the skill tree needs the absolute path.
+//
+// SCOPE — this file owns mechanical typography only. Front-matter, Diátaxis
+// typing, prose budget, semantic emojis and Mermaid palette are judgement calls
+// enforced by scripts/check-markdown.js, never here.
+{
+  // ── Headings ────────────────────────────────────────────────────────────
+  "MD001": true, // no level skip: H2 then H4 is a broken outline
+  "MD003": { "style": "atx" }, // `## Titre`, never the underline form
+  "MD018": true, // space required after the # marks
+  "MD019": true, // exactly one space, not three
+  "MD022": { "lines_above": 1, "lines_below": 1 },
+  "MD023": true, // headings start at column zero
+  "MD024": { "siblings_only": true }, // `## Test` may repeat across sections
+  "MD026": { "punctuation": ".,;:!" }, // a heading is a label, not a sentence
+  "MD036": false, // `**Pseudo-titre**` is a deliberate house pattern
+
+  // H1 STRUCTURE IS NOT LINTED HERE — MD025 (single H1) and MD041 (first line
+  // is an H1) are off on purpose. Whether a document has exactly one H1, and
+  // whether it matches the front-matter `title:`, is a contract question owned
+  // by scripts/check-markdown.js (STR001, STR002, STR003). Leaving them on also
+  // floods agent and SKILL.md files, which the contract explicitly excludes.
+  //
+  // If you ever turn them back on, you MUST pass `"front_matter_title": ""` to
+  // both. markdownlint otherwise reads the front-matter `title:` as an H1, so
+  // the contract's mandatory title-plus-identical-H1 pair reads as a double H1
+  // and every conforming file fails. Verified on markdownlint-cli2 v0.22.1.
+  "MD025": false,
+  "MD041": false,
+
+  // ── Lists ───────────────────────────────────────────────────────────────
+  "MD004": { "style": "dash" }, // `-`, never `*` or `+`
+  "MD005": true, // consistent indentation between siblings
+  "MD007": { "indent": 2 }, // two spaces per nesting level
+  "MD029": { "style": "ordered" }, // 1. 2. 3. — real numbers, readable raw
+  "MD030": true, // one space after the marker
+  "MD032": true, // lists surrounded by blank lines
+
+  // ── Code ────────────────────────────────────────────────────────────────
+  "MD031": true, // fences surrounded by blank lines
+  "MD040": true, // language tag mandatory — mirrors COD001
+  "MD046": { "style": "fenced" }, // never indented code blocks
+  "MD048": { "style": "backtick" }, // ``` not ~~~
+
+  // ── Tables ──────────────────────────────────────────────────────────────
+  "MD055": { "style": "leading_and_trailing" }, // pipes on both ends
+  "MD056": true, // every row has the header's column count
+  "MD058": true, // tables surrounded by blank lines
+  "MD060": false, // pipe alignment: not in the contract, and `--fix` cannot repair it
+
+  // ── Emphasis & inline ───────────────────────────────────────────────────
+  "MD037": true, // no space inside emphasis markers
+  "MD038": true, // no space inside code spans
+  "MD039": true, // no space inside link text
+  "MD049": { "style": "underscore" }, // _emphase_
+  "MD050": { "style": "asterisk" }, // **forte emphase**
+
+  // ── Links & images ──────────────────────────────────────────────────────
+  "MD034": true, // bare URLs get angle brackets or become real links
+  "MD042": true, // no empty link targets
+  "MD045": true, // images carry alt text
+  "MD051": true, // fragment links point at a real heading
+  "MD052": true, // reference links are defined
+  "MD053": true, // no unused reference definitions
+  "MD059": true, // "cliquez ici" is not link text
+
+  // ── Whitespace & file shape ─────────────────────────────────────────────
+  "MD009": { "br_spaces": 2 }, // trailing spaces only as an explicit <br>
+  "MD010": true, // no hard tabs
+  "MD012": { "maximum": 1 }, // one blank line between blocks
+  "MD027": true, // one space after the blockquote marker
+  "MD035": { "style": "---" }, // one thematic break style
+  "MD047": true, // file ends with a single newline
+
+  // ── Deliberately off ────────────────────────────────────────────────────
+  "MD013": false, // semantic linefeeds: one sentence per line, length is meaningless
+  "MD028": false, // GFM callouts legitimately hold blank lines
+  "MD033": false // <details><summary> and <br> are part of the contract
+}

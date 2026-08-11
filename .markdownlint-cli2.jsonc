@@ -1,0 +1,18 @@
+// Repository lint configuration. The rule set itself is NOT here.
+//
+// It lives in the markdown-style skill, which this repository happens to host.
+// Any other repository points at the same file through its installed path:
+//   ~/.claude/skills/markdown-style/assets/markdownlint-rules.jsonc
+//
+// Only repository-local concerns belong below: which paths to skip.
+{
+  "config": {
+    "extends": "markdown-style/assets/markdownlint-rules.jsonc"
+  },
+  "ignores": [
+    "node_modules",
+    ".git",
+    "**/_cache",
+    ".claude/tmp"
+  ]
+}

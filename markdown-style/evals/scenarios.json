@@ -1,0 +1,66 @@
+[
+  {
+    "type": "should",
+    "prompt": "Rédige la spec de l'authentification dans `docs/specs/`",
+    "expect_action": "write-doc",
+    "note": "Plan C5 session 1 — creation ex nihilo must load the skill."
+  },
+  {
+    "type": "should",
+    "prompt": "Corrige la coquille dans le README",
+    "expect_action": "revise-doc",
+    "note": "Plan C5 session 3 — a one-word edit still owes semantic linefeeds and an updated front-matter date."
+  },
+  {
+    "type": "should",
+    "prompt": "Crée un ADR sur le choix de PostgreSQL plutôt que MongoDB",
+    "expect_action": "write-doc",
+    "note": "ADR lives outside docs/ — front-matter keeps four keys, drops `type`."
+  },
+  {
+    "type": "should",
+    "prompt": "Vérifie que les fichiers de `docs/` respectent le contrat de rédaction",
+    "expect_action": "audit-doc",
+    "note": "Read-only sweep — must not rewrite the files it inspects."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Exécute le plan `docs/plans/migration-db.md`",
+    "expect_action": null,
+    "competing_skill": "none",
+    "note": "Plan C5 session 2 — the gate. Markdown is read as instructions, not authored."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Lis le README et résume-moi comment lancer les tests",
+    "expect_action": null,
+    "competing_skill": "none",
+    "note": "Pure consumption. Loading a 200-line contract to answer a question is the exact waste this skill exists to avoid."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Cherche toutes les occurrences de `DATABASE_URL` dans les fichiers Markdown du dépôt",
+    "expect_action": null,
+    "competing_skill": "none",
+    "note": "Grep over .md files. Touching Markdown is not authoring Markdown."
+  },
+  {
+    "type": "should_not",
+    "prompt": "Crée une nouvelle skill pour poster des messages sur Slack",
+    "expect_action": null,
+    "competing_skill": "generate-skill",
+    "note": "generate-skill authors .md files under its own architecture rules — SKILL.md carries no front-matter and no emoji H2. This skill must stay out of its way."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Nettoie la doc",
+    "expect_action": "ask_clarification",
+    "note": "Ask two things: report-only (`audit-doc`) or rewrite in place (`revise-doc`), and which paths are in scope."
+  },
+  {
+    "type": "ambiguous",
+    "prompt": "Documente le module d'authentification",
+    "expect_action": "ask_clarification",
+    "note": "Ask whether to create a new file (`write-doc`) or extend an existing one (`revise-doc`), and which Diátaxis type applies — a how-to and a reference cannot share a file."
+  }
+]
